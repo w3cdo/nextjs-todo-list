@@ -3,6 +3,8 @@
     --crust: #ffddbb;
     --subpanel: #ffbb88;
     --mantle: #ffaa77;
+    --mantle-bright: #ffb88d;
+    --mantle-brighter: #ffc5a0;
     --text: #220022;
     --subtext: #886688;
 
@@ -93,9 +95,16 @@ main {
         color: var(--subtext);
     }
 
-    input[type=button], input[type=submit], button, select {
+    input[type=button], input[type=submit], button {
+        transition-duration: 500ms;
         &:hover {
             cursor:pointer;
+            background: var(--mantle-bright);
+        }
+        &:active {
+            transition-duration: 50ms;
+            padding: .5em .75em;
+            background: var(--mantle-brighter)
         }
     }
 }
