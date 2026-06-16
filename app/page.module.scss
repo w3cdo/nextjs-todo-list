@@ -1,0 +1,39 @@
+.panel {
+    background: var(--crust);
+    padding: 1em 1em;
+    box-shadow: #aaa 0px 1em 5px -.5em;
+}
+
+.addItem {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    input[type=text] {
+        flex-grow: 1;
+    }
+}
+
+.addItem select[name=priority] {
+    option[value=high] {
+        background-color: var(--color-red);
+    }
+    option[value=medium] {
+        background-color: var(--color-yellow);
+    }
+    option[value=low] {
+        background-color: var(--color-green);
+    }
+    // lol ew ew ew
+    // it's ok :has is baseline now
+    // > Since December 2023
+    // ok well it's not but it should be baseline in like 2 weeks
+    &:has(option[value=high]:checked) {
+        background-color: var(--color-red);
+    }
+    &:has(option[value=medium]:checked) {
+        background-color: var(--color-yellow);
+    }
+    &:has(option[value=low]:checked) {
+        background-color: var(--color-green);
+    }
+}

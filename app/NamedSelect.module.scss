@@ -1,0 +1,11 @@
+.namedSelectContainer {
+    display: flex;
+    gap: 0em;
+    div {
+        background: var(--mantle);
+        border: none;
+        padding: .5em;
+        background-color: var(--subpanel);
+        text-transform: capitalize;
+    }
+}

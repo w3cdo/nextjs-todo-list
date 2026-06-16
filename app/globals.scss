@@ -1,0 +1,101 @@
+:root {
+    --bg: #ffeedd;
+    --crust: #ffddbb;
+    --subpanel: #ffbb88;
+    --mantle: #ffaa77;
+    --text: #220022;
+    --subtext: #886688;
+
+    --color-red: #ff9c9c;
+    --color-yellow: #f0ff9c;
+    --color-green: #9fff9c;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #220022;
+        --mantle: #442244;
+        --text: #ffeedd;
+        --subtext: #aa9988;
+    }
+}
+
+html {
+    overflow-x: hidden;
+}
+
+html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-dm-sans);
+    margin: 0;
+    font-size: 14px;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+main {
+    max-width: 50em;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 1em;
+
+    h1 {
+        text-align: center;
+        margin: 0;
+    }
+
+    h2 {
+        text-transform: uppercase;
+        font-size: 12px;
+        color: var(--subtext);
+        margin: 0.5em 0;
+    }
+
+    h2, p:first-child {
+        margin: 0 0 0.5em;
+    }
+
+    input, button, select {
+        background: var(--mantle);
+        border: none;
+        padding: .5em;
+        font-family: var(--font-dm-sans);
+        outline: 2px solid transparent;
+        transition-duration: 250ms;
+        font-size: 14px;
+        &:focus-visible {
+            outline: 2px solid var(--subtext);
+        }
+    }
+
+    select {
+        appearance: none;
+        &::before {
+            background: var(--mantle);
+            border: none;
+            padding: .5em;
+        }
+        option {
+            font-family: var(--font-dm-sans);
+        }
+    }
+
+    input::placeholder {
+        color: var(--subtext);
+    }
+
+    input[type=button], input[type=submit], button, select {
+        &:hover {
+            cursor:pointer;
+        }
+    }
+}
