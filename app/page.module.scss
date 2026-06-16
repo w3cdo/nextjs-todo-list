@@ -1,7 +1,9 @@
 .panel {
     background: var(--crust);
     padding: 1em 1em;
-    box-shadow: #aaa 0px 1em 5px -.5em;
+    box-shadow: var(--mantle) 0px 1em 5px -.5em;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .addItem {
@@ -14,26 +16,35 @@
 }
 
 .addItem select[name=priority] {
-    option[value=high] {
+    option[value=High] {
         background-color: var(--color-red);
     }
-    option[value=medium] {
+    option[value=Medium] {
         background-color: var(--color-yellow);
     }
-    option[value=low] {
+    option[value=Low] {
         background-color: var(--color-green);
     }
     // lol ew ew ew
     // it's ok :has is baseline now
     // > Since December 2023
     // ok well it's not but it should be baseline in like 2 weeks
-    &:has(option[value=high]:checked) {
+    &:has(option[value=High]:checked) {
         background-color: var(--color-red);
     }
-    &:has(option[value=medium]:checked) {
+    &:has(option[value=Medium]:checked) {
         background-color: var(--color-yellow);
     }
-    &:has(option[value=low]:checked) {
+    &:has(option[value=Low]:checked) {
         background-color: var(--color-green);
     }
+}
+
+.taskList {
+    gap: 1em;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
 }

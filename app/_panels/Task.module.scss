@@ -1,0 +1,28 @@
+.task {
+    background-color: var(--subpanel);
+    display: flex;
+    align-items: stretch;
+    & > * {
+        padding: .5em .65em;
+    }
+    h3 {
+        font-size: 1.15em;
+        margin: 0;
+        flex-grow: 1;
+    }
+}
+
+.dataCell {
+    display: flex;
+    align-items: center;
+    background-color: var(--mantle);
+    &[data-value=High] {
+        background-color: var(--color-red);
+    }
+    &[data-value=Medium] {
+        background-color: var(--color-yellow);
+    }
+    &[data-value=Low] {
+        background-color: var(--color-green);
+    }
+}

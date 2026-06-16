@@ -1,13 +1,32 @@
-import Image from "next/image";
-import AddItemPanel from "./AddItemPanel";
+"use client";
+import AddItemPanel from "./_panels/AddItemPanel";
+import TaskListPanel from "./_panels/TaskListPanel";
+import { Task, TaskListContext } from "./tasks";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const taskListState = useState<Task[]|undefined>([]);
+  const [taskList, setTaskList] = taskListState;
+
+  useEffect(() => {
+    let savedData = localStorage.getItem("taskList")
+    if (savedData)
+      setTaskList(JSON.parse(savedData))
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("taskList", JSON.stringify(taskList))
+  }, [taskList])
+
   return (
-    <main>
-      <h1>
-        Todo list
-      </h1>
-      <AddItemPanel />
-    </main>
+      <TaskListContext value={taskListState}>
+        <main>
+          <h1>
+            Todo list
+          </h1>
+          <AddItemPanel />
+          <TaskListPanel />
+        </main>
+      </TaskListContext>
   );
 }

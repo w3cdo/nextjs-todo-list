@@ -16,9 +16,17 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --bg: #220022;
-        --mantle: #442244;
+        --subpanel: #331133;
+        --crust: #442244;
+        --mantle: #775577;
+        --mantle-bright: #996099;
+        --mantle-brighter: #b58cb5;
         --text: #ffeedd;
         --subtext: #aa9988;
+
+        --color-red: #d64040;
+        --color-yellow: #728300;
+        --color-green: #008402;
     }
 }
 
@@ -41,6 +49,7 @@ body {
     flex-direction: row;
     padding: 1em;
     box-sizing: border-box;
+    align-items: center;
 }
 
 main {
@@ -57,23 +66,28 @@ main {
 
     h2 {
         text-transform: uppercase;
-        font-size: 12px;
+        font-size: .85em;
         color: var(--subtext);
         margin: 0.5em 0;
     }
 
-    h2, p:first-child {
-        margin: 0 0 0.5em;
+    h2:first-child, p:first-child {
+        margin-top: 0;
+    }
+
+    h2:last-child, p:last-child {
+        margin-bottom: 0;
     }
 
     input, button, select {
+        color: var(--text);
         background: var(--mantle);
         border: none;
         padding: .5em;
         font-family: var(--font-dm-sans);
         outline: 2px solid transparent;
         transition-duration: 250ms;
-        font-size: 14px;
+        font-size: 1em;
         &:focus-visible {
             outline: 2px solid var(--subtext);
         }
