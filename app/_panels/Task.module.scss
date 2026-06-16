@@ -5,11 +5,6 @@
     & > * {
         padding: .5em .65em;
     }
-    h3 {
-        font-size: 1.15em;
-        margin: 0;
-        flex-grow: 1;
-    }
 }
 
 .dataCell {
@@ -25,4 +20,22 @@
     &[data-value=Low] {
         background-color: var(--color-green);
     }
+}
+
+.headerCell {
+    flex-grow: 1;
+    display: flex;
+    background-color: var(--subpanel);
+    &:hover {
+        background-color: var(--bg);
+    }
+    h3 {
+        font-size: 1.15em;
+        margin: 0;
+    }
+    &[data-complete=true] {
+        text-decoration: line-through;
+        color: var(--subtext);
+    }
+
 }

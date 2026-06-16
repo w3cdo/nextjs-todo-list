@@ -110,7 +110,7 @@ main {
     }
 
     input[type=button], input[type=submit], button {
-        transition-duration: 500ms;
+        transition-duration: 250ms;
         &:hover {
             cursor:pointer;
             background: var(--mantle-bright);

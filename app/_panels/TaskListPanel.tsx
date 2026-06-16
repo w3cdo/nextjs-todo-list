@@ -22,7 +22,7 @@ export default function TaskListPanel() {
                 taskList!.length
                 ? <>
                     <ul className={pageStyles.taskList}>
-                        {taskList!.map(task => <Task task={task} />)}
+                        {taskList!.map(task => <Task task={task} key={task.id}/>)}
                     </ul>
                 </>
                 : <></>
