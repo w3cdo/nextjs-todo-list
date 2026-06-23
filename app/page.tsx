@@ -9,6 +9,14 @@ export default function Home() {
   const [taskList, setTaskList] = taskListState;
 
   useEffect(() => {
+    const response = fetch("api/todo");
+
+    const res2 = fetch("api/todo", {
+      method: "post",
+      body: JSON.stringify({name: "test"})
+    })
+    .then(console.log);
+    
     let savedData = localStorage.getItem("taskList")
     if (savedData)
       setTaskList(JSON.parse(savedData))
