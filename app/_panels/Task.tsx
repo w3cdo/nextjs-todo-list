@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { Task as ITask, TaskListContext } from "../tasks"
+import { Task as ITask, useTaskListContext } from "../tasks"
 import styles from "./Task.module.scss"
 
 export default function Task({task}: {task: ITask}) {
-    const [taskList, setTaskList] = useContext(TaskListContext)!;
+    const [taskList, setTaskList] = useTaskListContext();
     return (
         <li className={styles.task}>
             <div className={styles.dataCell} data-value={task.priority}>
@@ -14,14 +13,14 @@ export default function Task({task}: {task: ITask}) {
             </div>
             <button className={styles.headerCell} data-complete={task.completed} onClick={() => {
                 task.completed = !task.completed;
-                setTaskList([...taskList!])
+                setTaskList([...taskList])
             }}>
                 <h3>{task.name}</h3>
             </button>
             {/* todo: maybe tasklist should be a map */}
             <button onClick={() => {
-                taskList!.splice(taskList!.findIndex(e => e === task), 1)
-                setTaskList([...taskList!])
+                taskList.splice(taskList.findIndex(e => e === task), 1)
+                setTaskList([...taskList])
             }}>Remove</button>
         </li>
     )

@@ -7,6 +7,7 @@ export default function NamedSelect({children, name, defaultValue}: Readonly<{
 }>) {
     return (
         <div className={styles.namedSelectContainer}>
+            {/* todo - use label and id and htmlFor attribute */}
             <div>
                 {name}
             </div>

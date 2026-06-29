@@ -5,7 +5,7 @@ import { Task, TaskListContext } from "./tasks";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const taskListState = useState<Task[]|undefined>([]);
+  const taskListState = useState<Task[]>([]);
   const [taskList, setTaskList] = taskListState;
 
   useEffect(() => {
@@ -22,6 +22,7 @@ export default function Home() {
       setTaskList(JSON.parse(savedData))
   }, [])
 
+  // TODO: this also fires on the first mount with the initial [] and writes "[]" to localStorage
   useEffect(() => {
     localStorage.setItem("taskList", JSON.stringify(taskList))
   }, [taskList])

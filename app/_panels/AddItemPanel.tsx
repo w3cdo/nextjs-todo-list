@@ -3,37 +3,32 @@
 import NamedSelect from "../_components/NamedSelect";
 import Form from "next/form";
 import styles from "../page.module.scss";
-import { Category, categoryList, Priority, priorityList, Task, TaskListContext } from "../tasks";
-import { useContext, useEffect, useRef } from "react";
+import { Category, categoryList, Priority, priorityList, useTaskListContext } from "../tasks";
+import { useState } from "react";
 
 // i have a feeling this is shared state across
 // all instances here, but this should be fine for now.
 // i'll just wait for an answer on how to properly do this
-let animation: Animation;
-export default function AddItemPanel() {
-  const addButton = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    animation = new Animation(
-      new KeyframeEffect(addButton.current!, [
-        { offset: 0, backgroundColor: "var(--mantle-brighter)", padding: ".5em .75em" },
-        { offset: 1 }
-      ], {duration: 250, easing: "ease-out"})
-    )
-  }, [])
+// let animation: Animation;
 
-  const [taskList, setTaskList] = useContext(TaskListContext)!;
+// answer: module scoped vars are shared, component state stays per instance.
+export default function AddItemPanel() {
+  const [isAddActive, setIsAddActive] = useState(false);
+  const [taskList, setTaskList] = useTaskListContext();
   
   return (
     <div className={styles.panel}>
       <h2>Add item</h2>
+      
       <Form className={styles.addItem} action="" onSubmit={(e) => {
         /* We'll maybe preventDefault() when a backend is implemented */
         e.preventDefault();
 
-        animation.play()
+        setIsAddActive(false);
+        requestAnimationFrame(() => setIsAddActive(true));
         
         setTaskList([
-          ...taskList!,
+          ...taskList,
           {
             name: (e.target.elements.namedItem("task") as HTMLInputElement).value,
             id: crypto.randomUUID(),
@@ -52,8 +47,13 @@ export default function AddItemPanel() {
         <NamedSelect name="priority">
           {priorityList.map(e => <option value={e} key={e}>{e}</option>)}
         </NamedSelect>
-        <input type="submit" value="Add" ref={addButton} />
+        <input
+          type="submit"
+          value="Add"
+          className={isAddActive ? styles.addButtonActive : ""}
+          onAnimationEnd={() => setIsAddActive(false)}
+        />
       </Form>
     </div>
-  )
+  );
 }
