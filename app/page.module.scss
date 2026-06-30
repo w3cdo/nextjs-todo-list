@@ -15,21 +15,6 @@
     }
 }
 
-.addButtonActive {
-    animation: addButtonPulse 250ms ease-out;
-}
-
-@keyframes addButtonPulse {
-    0% {
-        background-color: var(--mantle-brighter);
-        padding: .5em .75em;
-    }
-    100% {
-        background-color: revert;
-        padding: revert;
-    }
-}
-
 .addItem select[name=priority] {
     option[value=High] {
         background-color: var(--color-red);
