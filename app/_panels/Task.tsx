@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { Task as ITask, TaskListContext } from "../tasks"
+import { Task as ITask } from "../tasks"
 import styles from "./Task.module.scss"
+import TaskListContext from "../_providers/TaskListContext";
 
 export default function Task({task}: {task: ITask}) {
     const [taskList, setTaskList] = useContext(TaskListContext)!;
@@ -12,7 +13,7 @@ export default function Task({task}: {task: ITask}) {
             <div className={styles.dataCell}>
                 <span>{task.category}</span>
             </div>
-            <button className={styles.headerCell} data-complete={task.completed} onClick={() => {
+            <button className={styles.headerCell} data-complete={Boolean(task.completed)} onClick={() => {
                 task.completed = !task.completed;
                 setTaskList([...taskList!])
             }}>

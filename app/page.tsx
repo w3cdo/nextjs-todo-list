@@ -1,30 +1,18 @@
-"use client";
 import AddItemPanel from "./_panels/AddItemPanel";
 import TaskListPanel from "./_panels/TaskListPanel";
-import { Task, TaskListContext } from "./tasks";
+import { Task } from "./tasks";
 import { useEffect, useState } from "react";
+import TaskListContext from "./_providers/TaskListContext";
 
 export default function Home() {
   const taskListState = useState<Task[]|undefined>([]);
   const [taskList, setTaskList] = taskListState;
 
   useEffect(() => {
-    const response = fetch("api/todo");
-
-    const res2 = fetch("api/todo", {
-      method: "post",
-      body: JSON.stringify({name: "test"})
-    })
-    .then(console.log);
-    
-    let savedData = localStorage.getItem("taskList")
-    if (savedData)
-      setTaskList(JSON.parse(savedData))
+    fetch("api/todo").then(async r => setTaskList(await r.json()));
   }, [])
 
-  useEffect(() => {
-    localStorage.setItem("taskList", JSON.stringify(taskList))
-  }, [taskList])
+  console.log(taskList)
 
   return (
       <TaskListContext value={taskListState}>
@@ -33,7 +21,7 @@ export default function Home() {
             Todo list
           </h1>
           <AddItemPanel />
-          <TaskListPanel />
+          {taskList ? <TaskListPanel /> : <h2>Fetching data from server</h2>}
         </main>
       </TaskListContext>
   );

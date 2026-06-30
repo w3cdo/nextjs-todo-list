@@ -1,9 +1,9 @@
 "use client";
 import { useContext, useState } from "react"
 import pageStyles from "../page.module.scss"
-import { TaskListContext } from "../tasks"
 import NumberFlow from "@number-flow/react";
 import Task from "./Task";
+import TaskListContext from "../_providers/TaskListContext";
 
 export default function TaskListPanel() {
     const [taskList, setTaskList] = useContext(TaskListContext)!

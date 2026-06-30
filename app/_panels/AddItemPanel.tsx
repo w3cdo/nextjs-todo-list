@@ -3,8 +3,10 @@
 import NamedSelect from "../_components/NamedSelect";
 import Form from "next/form";
 import styles from "../page.module.scss";
-import { Category, categoryList, Priority, priorityList, Task, TaskListContext } from "../tasks";
+import { Category, categoryList, Priority, priorityList, Task } from "../tasks";
 import { useContext, useEffect, useRef } from "react";
+import TaskListContext from "../_providers/TaskListContext";
+import { add } from "../_actions/todo";
 
 // i have a feeling this is shared state across
 // all instances here, but this should be fine for now.
@@ -26,23 +28,9 @@ export default function AddItemPanel() {
   return (
     <div className={styles.panel}>
       <h2>Add item</h2>
-      <Form className={styles.addItem} action="" onSubmit={(e) => {
+      <Form className={styles.addItem} action={add} onSubmit={(e) => {
         /* We'll maybe preventDefault() when a backend is implemented */
-        e.preventDefault();
-
         animation.play()
-        
-        setTaskList([
-          ...taskList!,
-          {
-            name: (e.target.elements.namedItem("task") as HTMLInputElement).value,
-            id: crypto.randomUUID(),
-            // TODO: validate against a zod enum instead of casting
-            category: (e.target.elements.namedItem("category") as HTMLInputElement).value as Category,
-            priority: (e.target.elements.namedItem("priority") as HTMLInputElement).value as Priority,
-            completed: false
-          }
-        ]);
       }}>
         {/* these could honestly just accept a string[] */}
         <NamedSelect name="category">
